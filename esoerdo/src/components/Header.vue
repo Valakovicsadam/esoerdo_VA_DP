@@ -6,16 +6,17 @@
     <nav class="navbar navbar-expand-lg fixed-top modern-navbar">
       <div class="container-fluid">
 
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-          <a class="navbar-brand d-flex align-items-center justify-content-center" href="#">
-            <img class="logo" src="../assets/leaf.png" alt="logo" title="logo" />
-            <span class="brand-text bebas-neue-regular alig-items-center" aria-current="page">Esőerdő</span>
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+        <a class="navbar-brand d-flex align-items-center justify-content-center" href="#">
+          <img class="logo" src="../assets/leaf.png" alt="logo" title="logo" />
+          <span class="brand-text bebas-neue-regular" aria-current="page">Esőerdő</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul class="navbar-nav d-flex align-items-center bebas-neue-regular">
             <li class="nav-item">
               <a class="nav-link" href="#">Tips</a>
@@ -31,15 +32,16 @@
             </li>
           </ul>
         </div>
+
       </div>
     </nav>
   </header>
+
   <main>
   </main>
+
   <footer>
   </footer>
-
-
 </template>
 
 <style scoped>
@@ -47,10 +49,8 @@
 
 .brand-text {
   text-transform: uppercase;
-
 }
 
-/* Navbar alapok */
 .modern-navbar {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(50px);
@@ -61,7 +61,6 @@
   z-index: 1050;
 }
 
-/* Logó méretezése és márkaszöveg */
 .modern-navbar .logo {
   height: 36px;
   margin-right: 12px;
@@ -69,12 +68,10 @@
   transition: transform 0.3s ease;
 }
 
-/* Hover effekt logón */
 .modern-navbar .logo:hover {
   transform: scale(1.5) rotate(5deg);
 }
 
-/* Navbar linkek */
 .modern-navbar .nav-link {
   color: #537c57;
   font-weight: 600;
@@ -84,16 +81,15 @@
   font-size: 25px;
 }
 
-/* Hover animáció linkeken */
 .modern-navbar .nav-link::after {
     content: '';
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background-color: #0b3b1f;
-  transition: width 0.3s ease;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #0b3b1f;
+    transition: width 0.3s ease;
 }
 
 .modern-navbar .nav-link:hover,
@@ -115,4 +111,30 @@ main {
   font-style: normal;
   font-size: 50px;
 }
+
+@media (max-width: 768px) {
+  .modern-navbar .logo {
+    height: 30px;
+  }
+
+  .bebas-neue-regular {
+    font-size: 30px;
+  }
+
+  .modern-navbar .nav-link {
+    font-size: 18px;
+    margin: 0 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .modern-navbar .logo {
+    height: 50px;
+  }
+
+  .bebas-neue-regular {
+    font-size: 45px;
+  }
+}
+
 </style>
