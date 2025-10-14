@@ -25,10 +25,9 @@
                 <div class="col-lg-3">
                     <div class="card">
                         <img src="../assets/map.jpg" alt="Map" title="Rainforest map of the world" />
-                        <div class="card-content">
+                        <div class="card-content ">
                             <strong>Interactive map</strong> <span class="tag">Education</span>
-                            <p></p>
-                            <p></p>
+                            <p class="mt-2">An Interactive way to learn about our Rainforests</p>
                         </div>
                     </div>
                 </div>
@@ -36,9 +35,8 @@
                     <div class="card">
                         <img src="../assets/jaguar.jpg" alt="Jaguar" title="Jaguar" />
                         <div class="card-content">
-                            <strong>Plants and animals</strong> <span class="tag">Education</span>
-                            <p></p>
-                            <p></p>
+                            <strong>Plants and animals</strong> <span class="tag">Wildlife</span>
+                            <p class="mt-2">Learn about the wildlife in the rainforests </p>
                         </div>
                     </div>
                 </div>
@@ -46,9 +44,8 @@
                     <div class="card">
                         <img src="../assets/quiz.jpg" alt="Quiz" title="Quiz" />
                         <div class="card-content">
-                            <strong>Quiz</strong> <span class="tag">Canopy</span>
-                            <p></p>
-                            <p></p>
+                            <strong>Quiz</strong> <span class="tag">Brainstorm</span>
+                            <p class="mt-2">A playfull quiz for every age group</p>
                         </div>
                     </div>
                 </div>
@@ -56,28 +53,27 @@
                     <div class="card">
                         <img src="../assets/sustain.jpg" alt="Sus" title="Sustainability" />
                         <div class="card-content">
-                            <strong>Sustainability tips</strong> <span class="tag">Canopy</span>
-                            <p></p>
-                            <p></p>
+                            <strong>Sustainability tips</strong> <span class="tag">Tips</span>
+                            <p class="mt-2">Let's unite for the rainforests to save them</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="layers-container">
-            <h4>Plant adapt</h4>
+            <h4>Did you know?</h4>
             <div class="row d-flex">
-                <div class="col-lg-4">
-                    <img src="" alt="">
-                    <p>A</p>
+                <div class="col-lg-4 facts">
+                    <img class="fact-icon" src="../assets/jungle.png" alt="">
+                    <p>Rainforests get a lot of rain – They can receive over 2,000 mm (80 inches) of rain each year!</p>
                 </div>
-                <div class="col-lg-4">
-                    <img src="" alt="">
-                    <p>A</p>
+                <div class="col-lg-4 facts">
+                    <img class="fact-icon" src="../assets/sun.png" alt="">
+                    <p>Home to half of all species – Although they cover only about 6% of Earth's surface, rainforests are home to over 50% of the world’s plant and animal species.</p>
                 </div>
-                <div class="col-lg-4">
-                    <img src="" alt="">
-                    <p>A</p>
+                <div class="col-lg-4 facts">
+                    <img class="fact-icon" src="../assets/temple.png" alt="">
+                    <p>The Amazon is the largest – The Amazon Rainforest in South America is the largest rainforest in the world, often called the "lungs of the Earth" because it produces so much oxygen.</p>
                 </div>
             </div>
         </div>
@@ -106,19 +102,19 @@
         </div>
 
         <div class="tabs">
-            <p class="d-inline-flex tab trees">
+            <p class=" tab trees">
                 <button class="btn" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
                     Trees
                 </button>
             </p>
-            <p class="d-inline-flex tab flowers">
+            <p class="tab flowers">
                 <button class="btn" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
                     Flowers
                 </button>
             </p>
-            <p class="d-inline-flex gap-1 tab plants">
+            <p class=" gap-1 tab plants">
                 <button class="btn" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
                     Plants
@@ -129,24 +125,27 @@
         <div class="cards-container">
             <div class="card">
                 <div class="collapse" id="collapseExample1">
-                    <div class="card card-body">
-                        1
+                    <div class="card-body">
+                        <h6>Kapok Tree</h6>
+                        <p>The Kapok tree (Ceiba pentandra) is known for its towering height and large buttress roots that help stabilize it in the shallow rainforest soil. It is mainly found in the tropical rainforests of Central and South America. This tree provides habitat and food for many animals.</p>
                     </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="collapse" id="collapseExample1">
-                    <div class="card card-body">
-                        1
+                    <div class=" card-body">
+                        <h6>Mahogany</h6>
+                        <p>Mahogany (Swietenia macrophylla) is prized for its durable and beautiful wood. It grows in the rainforests of Central and South America. Due to heavy logging, conservation efforts are important to protect this majestic species.</p>
                     </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="collapse" id="collapseExample1">
-                    <div class="card card-body">
-                        1.
+                    <div class=" card-body">
+                        <h6>Dipterocarp Trees</h6>
+                        <p>Dipterocarp trees dominate the rainforests of Southeast Asia. These towering giants are known for their massive size and hardwood timber. They play a crucial role in the forest canopy by providing shelter and food for many creatures, and they influence the forest’s microclimate.</p>
                     </div>
                 </div>
             </div>
@@ -155,24 +154,27 @@
         <div class="cards-container">
             <div class="card">
                 <div class="collapse" id="collapseExample2">
-                    <div class="card card-body">
-                        2
+                    <div class=" card-body">
+                        <h6>Rafflesia</h6>
+                        <p>The Rafflesia flower is famous for producing the largest single bloom in the world. Found in the rainforests of Southeast Asia, especially in Malaysia and Indonesia, this flower is also known as the “corpse flower” because of its strong, unpleasant odor that attracts flies for pollination.</p>
                     </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="collapse" id="collapseExample2">
-                    <div class="card card-body">
-                        2
+                    <div class=" card-body">
+                        <h6>Heliconia</h6>
+                        <p>Heliconia, often called “lobster claw” or “wild plantain,” is known for its bright, colorful bracts that look like flowers. These plants grow in tropical rainforests across Central and South America and provide food and shelter for hummingbirds and other pollinators.</p>
                     </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="collapse" id="collapseExample2">
-                    <div class="card card-body">
-                        2
+                    <div class=" card-body">
+                        <h6>Passion Flower</h6>
+                        <p>The Passion Flower grows in rainforests in Central and South America. It is admired for its intricate and beautiful flowers, which have a unique structure that helps attract pollinators like bees and butterflies. The fruit of some species is also edible.</p>
                     </div>
                 </div>
             </div>
@@ -181,24 +183,27 @@
         <div class="cards-container">
             <div class="card">
                 <div class="collapse" id="collapseExample3">
-                    <div class="card card-body">
-                        3
+                    <div class=" card-body">
+                        <h6>Epiphytes</h6>
+                        <p>Epiphytes are plants that grow on other plants, especially trees, without harming them. Common in rainforests worldwide, they absorb moisture and nutrients from the air and rain. Orchids and bromeliads are well-known examples of epiphytes.</p>
                     </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="collapse" id="collapseExample3">
-                    <div class="card card-body">
-                        3
+                    <div class=" card-body">
+                        <h6>Ferns</h6>
+                        <p>Ferns thrive in the humid, shaded environment of rainforests. They have been around for millions of years and contribute to the forest’s undergrowth, helping to retain moisture and provide habitat for small animals and insects.</p>
                     </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="collapse" id="collapseExample3">
-                    <div class="card card-body">
-                        3
+                    <div class=" card-body">
+                        <h6>Bamboo</h6>
+                        <p>Bamboo is a fast-growing plant found in many tropical rainforests, especially in Asia and South America. It is important for the ecosystem as food and shelter for animals like pandas and various insects, and it is also used by humans for construction and crafts</p>
                     </div>
                 </div>
             </div>
@@ -258,11 +263,31 @@ p {
     padding: 0 20px;
 }
 
-.herotext {
+.herotext{
     background-color: rgba(255, 255, 255, 0.7);
     color: #000;
     border-radius: 20px;
     padding: 10px;
+}
+
+.herotext, .facts {
+
+}
+
+.facts{
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center; /* Középre igazítja a képet és a szöveget */
+    padding: 20px;
+}
+
+
+.fact-icon {
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 0 auto 10px auto; /* Középre és egy kis alsó margó */
 }
 
 .section {
@@ -291,10 +316,10 @@ p {
     border-radius: 12px;
     overflow: hidden;
     max-width: 280px;
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
     transition: box-shadow 0.5s ease;
+    margin: 10px;
 }
 
 .card:hover {
@@ -346,6 +371,10 @@ p {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
+}
+
+.d-flex{
+    flex-wrap: nowrap;
 }
 
 .layers-container,
@@ -403,9 +432,8 @@ h4 {
     background-color: #5FAD56;
 }
 
-.trees,
-.flowers,
-.plants {
-    color: #000;
+.trees,.flowers,.plants {
+    color: #fff;
+    font-weight: bold;
 }
 </style>
