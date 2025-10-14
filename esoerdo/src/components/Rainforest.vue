@@ -65,21 +65,20 @@
             </div>
         </div>
         <div class="layers-container">
-            <div class="layer">
-                <a href="#">Emergent Layer</a>
-                <p>Tallest trees reaching 60m, home to eagles, butterflies, and monkeys</p>
-            </div>
-            <div class="layer">
-                <a href="#">Canopy</a>
-                <p>Dense ceiling of branches, most animals live here including birds, snakes, and primates</p>
-            </div>
-            <div class="layer">
-                <a href="#">Understory</a>
-                <p>Shaded layer with smaller trees and plants, home to frogs, insects, and small mammals</p>
-            </div>
-            <div class="layer">
-                <a href="#">Forest Floor</a>
-                <p>Dark, damp ground layer with decomposing matter, inhabited by jaguars, tapirs, and insects</p>
+            <h4>Plant adapt</h4>
+            <div class="row d-flex">
+                <div class="col-lg-4">
+                    <img src="" alt="">
+                    <p>A</p>
+                </div>
+                <div class="col-lg-4">
+                    <img src="" alt="">
+                    <p>A</p>
+                </div>
+                <div class="col-lg-4">
+                    <img src="" alt="">
+                    <p>A</p>
+                </div>
             </div>
         </div>
     </section>
@@ -107,35 +106,118 @@
         </div>
 
         <div class="tabs">
-            <div class="tab">Trees</div>
-            <div class="tab">Flowers</div>
-            <div class="tab">Plants</div>
+            <p class="d-inline-flex tab trees">
+                <button class="btn" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                    Trees
+                </button>
+            </p>
+            <p class="d-inline-flex tab flowers">
+                <button class="btn" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                    Flowers
+                </button>
+            </p>
+            <p class="d-inline-flex gap-1 tab plants">
+                <button class="btn" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+                    Plants
+                </button>
+            </p>
         </div>
 
         <div class="cards-container">
             <div class="card">
-                <div class="card-content">
-                    <a href="#">Kapok Tree</a>
-                    <p>A massive emergent tree that can grow up to 200 feet tall, with a trunk up to 10 feet in
-                        diameter.</p>
-                    <p>Produces seed pods with cotton-like fibers used by animals for nesting</p>
+                <div class="collapse" id="collapseExample1">
+                    <div class="card card-body">
+                        1
+                    </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-content">
-                    <a>Rubber Tree</a>
-                    <p>Native to the Amazon, this tree produces latex which is harvested to make natural rubber.</p>
-                    <p>Can live up to 100 years and grows to about 100 feet tall</p>
+                <div class="collapse" id="collapseExample1">
+                    <div class="card card-body">
+                        1
+                    </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-content">
-                    <a>Strangler Fig</a>
-                    <p>Begins life as an epiphyte in the canopy, sending roots down that eventually surround and
-                        'strangle' the host tree.</p>
-                    <p>Provides food for many rainforest animals year-round</p>
+                <div class="collapse" id="collapseExample1">
+                    <div class="card card-body">
+                        1.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards-container">
+            <div class="card">
+                <div class="collapse" id="collapseExample2">
+                    <div class="card card-body">
+                        2
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="collapse" id="collapseExample2">
+                    <div class="card card-body">
+                        2
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="collapse" id="collapseExample2">
+                    <div class="card card-body">
+                        2
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards-container">
+            <div class="card">
+                <div class="collapse" id="collapseExample3">
+                    <div class="card card-body">
+                        3
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="collapse" id="collapseExample3">
+                    <div class="card card-body">
+                        3
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="collapse" id="collapseExample3">
+                    <div class="card card-body">
+                        3
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layers-container2 mt-3">
+            <h4>Plant adapt</h4>
+            <div class="row d-flex">
+                <div class="col-lg-4">
+                    <img src="" alt="">
+                    <p>A</p>
+                </div>
+                <div class="col-lg-4">
+                    <img src="" alt="">
+                    <p>A</p>
+                </div>
+                <div class="col-lg-4">
+                    <img src="" alt="">
+                    <p>A</p>
                 </div>
             </div>
         </div>
@@ -247,14 +329,28 @@ p {
 }
 
 .layers-container {
-    background: #ebfcf4;
+    background: #afecd0;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
     padding: 20px;
-    display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
+}
+
+.layers-container2 {
+    background: #69b5789d;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+    padding: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.layers-container,
+h4 {
+    text-align: center;
 }
 
 .layer {
@@ -276,15 +372,40 @@ p {
 }
 
 .tab {
-    background: #f0f0f0;
+    background: #ffffff;
     padding: 8px 16px;
     border-radius: 20px;
     cursor: pointer;
     user-select: none;
+    transition: box-shadow 0.5s ease;
+}
+
+.tab:hover {
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.5);
 }
 
 .tab.active {
     background: #d1e7e3;
     font-weight: 700;
+}
+
+.trees {
+    background-color: #a5784c;
+
+}
+
+.flowers {
+    background-color: #ee5d92;
+
+}
+
+.plants {
+    background-color: #5FAD56;
+}
+
+.trees,
+.flowers,
+.plants {
+    color: #000;
 }
 </style>
