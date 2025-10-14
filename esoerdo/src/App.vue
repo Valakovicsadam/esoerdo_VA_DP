@@ -1,15 +1,17 @@
 <script setup>
 import Rainforest from './components/Rainforest.vue';
-import Header from './components/Header.vue';
+import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
+import Quiz from './components/Quiz.vue';
 
 </script>
 
 <template>
 
-  <Header />
+  <Navbar />
   <main>
     <Rainforest />
+    <Quiz />
   </main>
 
   <Footer />
