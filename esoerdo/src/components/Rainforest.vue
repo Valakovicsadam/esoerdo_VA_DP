@@ -16,7 +16,7 @@
         </p>
         <div class="cards-container">
             <div class="card">
-                <img src="" alt="Jaguar" />
+                <img src="../assets/jaguar.jpg" alt="Jaguar" />
                 <div class="card-content">
                     <strong>Jaguar</strong> <span class="tag">Multiple Layers</span>
                     <p>Forest Floor & Canopy</p>
@@ -25,7 +25,7 @@
             </div>
 
             <div class="card">
-                <img src="" alt="Poison Dart Frog" />
+                <img src="../assets/dart_frog.jpg" alt="Poison Dart Frog" />
                 <div class="card-content">
                     <strong>Poison Dart Frog</strong> <span class="tag">Understory</span>
                     <p>Forest Floor</p>
@@ -34,7 +34,7 @@
             </div>
 
             <div class="card">
-                <img src="" alt="Toucan" />
+                <img src="../assets/toucan.webp" alt="Toucan" />
                 <div class="card-content">
                     <strong>Toucan</strong> <span class="tag">Canopy</span>
                     <p>Canopy</p>
@@ -43,7 +43,7 @@
             </div>
 
             <div class="card">
-                <img src="" alt="Sloth" />
+                <img src="../assets/sloth.jpeg" alt="Sloth" />
                 <div class="card-content">
                     <strong>Sloth</strong> <span class="tag">Canopy</span>
                     <p>Canopy</p>
@@ -78,8 +78,8 @@
             Rainforests contain over 50% of all plant species on Earth, with incredible diversity in every layer of the forest
         </p>
         <div class="cards-container">
-            <img src="" alt="Kapok Tree" style="border-radius: 12px; max-width: 48%; margin: 0 1%;" />
-            <img src="" alt="Hibiscus" style="border-radius: 12px; max-width: 48%; margin: 0 1%;" />
+            <img src="../assets/leaf.png" alt="Kapok Tree" style="border-radius: 12px; max-width: 48%; margin: 0 1%;" />
+            <img src="../assets/hibiscus.jpeg" alt="Hibiscus" style="border-radius: 12px; max-width: 48%; margin: 0 1%;" />
         </div>
 
         <div class="tabs">
