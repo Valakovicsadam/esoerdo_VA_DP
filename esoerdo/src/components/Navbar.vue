@@ -6,10 +6,10 @@
     <nav class="navbar navbar-expand-lg fixed-top modern-navbar">
       <div class="container-fluid">
 
-        <a class="navbar-brand d-flex align-items-center justify-content-center" href="#">
-          <img class="logo" src="../assets/leaf.png" alt="logo" title="logo" />
+        <router-link to="/" class="navbar-brand d-flex align-items-center justify-content-center" href="#">
+          <img class="logo" src="../assets/mainpage/leaf.png" alt="logo" title="logo" />
           <span class="brand-text bebas-neue-regular" aria-current="page">Esőerdő</span>
-        </a>
+        </router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
           aria-label="Toggle navigation">
@@ -19,16 +19,16 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul class="navbar-nav d-flex align-items-center bebas-neue-regular">
             <li class="nav-item">
-              <a class="nav-link" href="#">Tips</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#">Map</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Plants&Animals</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Quiz</a>
+              <router-link to="/quiz" class="nav-link" href="#">Quiz</router-link>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tips</a>
             </li>
           </ul>
         </div>

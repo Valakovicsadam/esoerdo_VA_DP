@@ -16,7 +16,7 @@
       <!-- Márka + leírás -->
       <div class="col-md-4">
         <h4 class="footer-brand mb-3">
-          <img src="../assets/leaf.png" alt="logo" class="footer-logo" />
+          <img src="../assets/mainpage/leaf.png" alt="logo" class="footer-logo" />
           Esőerdő
         </h4>
         <p>A symbol of our commitment to sustainability and nature conservation.</p>
@@ -26,10 +26,10 @@
       <div class="col-md-4">
         <h5>Gyors linkek</h5>
         <ul class="list-unstyled footer-links">
-          <li><a href="#">Tips</a></li>
           <li><a href="#">Map</a></li>
           <li><a href="#">Plants&Animals</a></li>
           <li><a href="#">Quiz</a></li>
+          <li><a href="#">Tips</a></li>
         </ul>
       </div>
 
