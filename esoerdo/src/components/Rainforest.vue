@@ -1,5 +1,7 @@
 <script setup>
 
+
+
 </script>
 
 <template>
@@ -42,11 +44,13 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="card">
+                        <router-link to="/quiz" class="links"> 
                         <img src="../assets/mainpage/cards/quiz.jpg" alt="Quiz" title="Quiz" />
                         <div class="card-content">
                             <strong>Quiz</strong> <span class="tag">Brainstorm</span>
                             <p class="mt-2">A playfull quiz for every age group</p>
                         </div>
+                    </router-link>
                     </div>
                 </div>
                 <div class="col-lg-3">
@@ -287,33 +291,6 @@
 
 <style scoped>
 
-.climate-intense {
-    background: #1b1b1b;
-    color: #eee;
-    padding: 30px;
-    border-radius: 12px;
-    max-width: 700px;
-    margin: 40px auto;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    box-shadow: 0 0 15px #e63946;
-  }
-  .climate-intense h2 {
-    text-align: center;
-    color: #e63946;
-    margin-bottom: 25px;
-    font-size: 2rem;
-  }
-  .climate-intense p {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    margin-bottom: 18px;
-  }
-  .bold-red {
-    color: #e63946;
-    font-weight: 700;
-    text-shadow: 0 0 8px #e63946;
-  }
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -409,6 +386,11 @@ p {
     flex-direction: column;
     transition: box-shadow 0.5s ease;
     margin: 10px;
+}
+
+.links {
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
 .card:hover {
