@@ -8,7 +8,7 @@
 
         <router-link to="/" class="navbar-brand d-flex align-items-center justify-content-center" href="#">
           <img class="logo" src="../assets/mainpage/leaf.png" alt="logo" title="logo" />
-          <span class="brand-text bebas-neue-regular" aria-current="page">Esőerdő</span>
+          <span class="brand-text bebas-neue-regular" aria-current="page">Rainforest</span>
         </router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -18,9 +18,6 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul class="navbar-nav d-flex align-items-center bebas-neue-regular">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Map</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Plants&Animals</a>
             </li>
