@@ -1,6 +1,83 @@
 <script setup>
 
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
+import { RainforestData } from "../data/RainforestData.js";
 
+const mapContainer = ref(null);
+const map = ref(null);
+const selected = ref(null);
+const query = ref("");
+
+const rainforest = new RainforestData();
+
+function resetView() {
+  if (map.value) map.value.flyTo({ center: [0, 0], zoom: 2 });
+}
+
+function search() {
+  const found = rainforest.findByName(query.value);
+  if (found) {
+    const bounds = new maplibregl.LngLatBounds();
+    found.coordinates.forEach(([lng, lat]) => bounds.extend([lng, lat]));
+    map.value.fitBounds(bounds, { padding: 50 });
+    selected.value = found;
+  } else {
+    alert("Region not found");
+  }
+}
+
+onMounted(() => {
+  map.value = new maplibregl.Map({
+    container: mapContainer.value,
+    style: "https://demotiles.maplibre.org/style.json",
+    center: [0, 0],
+    zoom: 2,
+  });
+
+  map.value.on("load", () => {
+    map.value.addSource("rainforests", {
+      type: "geojson",
+      data: rainforest.getGeoJSON(),
+    });
+
+    map.value.addLayer({
+      id: "rainforest-fill",
+      type: "fill",
+      source: "rainforests",
+      paint: { "fill-color": ["get", "color"], "fill-opacity": 0.5 },
+    });
+
+    map.value.addLayer({
+      id: "rainforest-outline",
+      type: "line",
+      source: "rainforests",
+      paint: { "line-color": "#000", "line-width": 1 },
+    });
+
+    map.value.on("click", "rainforest-fill", e => {
+      const props = e.features[0].properties;
+      props.countries = JSON.parse(props.countries || "[]");
+      selected.value = props;
+      map.value.flyTo({ center: e.lngLat, zoom: 4 });
+    });
+
+    map.value.on("mouseenter", "rainforest-fill", () => {
+      map.value.getCanvas().style.cursor = "pointer";
+    });
+    map.value.on("mouseleave", "rainforest-fill", () => {
+      map.value.getCanvas().style.cursor = "";
+    });
+  });
+});
+
+onBeforeUnmount(() => {
+  if (map.value) {
+    map.value.remove();
+    map.value = null;
+  }
+});
 
 </script>
 
@@ -44,13 +121,13 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="card">
-                        <router-link to="/quiz" class="links"> 
-                        <img src="../assets/mainpage/cards/quiz.jpg" alt="Quiz" title="Quiz" />
-                        <div class="card-content">
-                            <strong>Quiz</strong> <span class="tag">Brainstorm</span>
-                            <p class="mt-2">A playfull quiz for every age group</p>
-                        </div>
-                    </router-link>
+                        <router-link to="/quiz" class="links">
+                            <img src="../assets/mainpage/cards/quiz.jpg" alt="Quiz" title="Quiz" />
+                            <div class="card-content">
+                                <strong>Quiz</strong> <span class="tag">Brainstorm</span>
+                                <p class="mt-2">A playfull quiz for every age group</p>
+                            </div>
+                        </router-link>
                     </div>
                 </div>
                 <div class="col-lg-3">
@@ -137,6 +214,32 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <div class="rainforest-map-wrap">
+                <div class="controls">
+                    <input v-model="query" placeholder="Search rainforest (e.g. Amazon)" @keyup.enter="search"
+                        class="search" />
+                    <button @click="resetView">Reset View</button>
+                </div>
+
+                <div ref="mapContainer" class="map"></div>
+
+                <aside class="info-panel">
+                    <h3>Rainforest Regions</h3>
+                    <div v-if="selected">
+                        <h4>{{ selected.name }}</h4>
+                        <p><strong>Area:</strong> {{ selected.area_km2.toLocaleString() }} km²</p>
+                        <p><strong>Countries:</strong> {{ selected.countries.join(', ') }}</p>
+                        <p>{{ selected.description }}</p>
+                        <p><a :href="selected.more" target="_blank">Learn more →</a></p>
+                    </div>
+                    <div v-else>
+                        <p>Click a rainforest region to view its details.</p>
+                    </div>
+                </aside>
             </div>
         </div>
 
@@ -274,15 +377,18 @@
             <div class="row d-flex">
                 <div class="col-lg-4 facts">
                     <img class="fact-icon" src="../assets/mainpage/icons/map.png" alt="">
-                    <p><strong>Tropical Rainforests are mostly found near the Equator</strong>, in regions like the Amazon Basin in South America, the Congo Basin in Africa, and Southeast Asia.</p>
+                    <p><strong>Tropical Rainforests are mostly found near the Equator</strong>, in regions like the
+                        Amazon Basin in South America, the Congo Basin in Africa, and Southeast Asia.</p>
                 </div>
                 <div class="col-lg-4 facts">
                     <img class="fact-icon" src="../assets/mainpage/icons/climate-change.png" alt="">
-                    <p><strong>These forests have a hot, humid climate year-round</strong>, with average temperatures between 20-30°C (68-86°F) and heavy rainfall often exceeding 2,000 mm (80 inches) annually.</p>
+                    <p><strong>These forests have a hot, humid climate year-round</strong>, with average temperatures
+                        between 20-30°C (68-86°F) and heavy rainfall often exceeding 2,000 mm (80 inches) annually.</p>
                 </div>
                 <div class="col-lg-4 facts">
                     <img class="fact-icon" src="../assets/mainpage/icons/humidity.png" alt="">
-                    <p><strong>Rainforests play a crucial role in regulating the global climate</strong>, acting as massive carbon sinks and influencing rainfall patterns locally and worldwide.</p>
+                    <p><strong>Rainforests play a crucial role in regulating the global climate</strong>, acting as
+                        massive carbon sinks and influencing rainfall patterns locally and worldwide.</p>
                 </div>
             </div>
         </div>
@@ -290,6 +396,134 @@
 </template>
 
 <style scoped>
+
+
+.map-section {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    margin-top: 2rem;
+}
+
+.rainforest-map-wrap {
+    display: flex;
+    gap: 1.5rem;
+    height: 70vh;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.controls {
+    position: absolute;
+    z-index: 10;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+.controls input {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    width: 180px;
+    transition: 0.3s ease;
+}
+
+.controls input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 4px #4caf5066;
+}
+
+.controls button {
+    background: linear-gradient(135deg, #43a047, #2e7d32);
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.controls button:hover {
+    background: linear-gradient(135deg, #4caf50, #388e3c);
+}
+
+.map {
+    flex: 1;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.info-panel {
+    width: 28%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.2rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.info-panel h3 {
+    margin-top: 0;
+    font-size: 18px;
+    border-bottom: 2px solid #4caf50;
+    padding-bottom: 6px;
+}
+
+.info-panel h4 {
+    margin: 0.5rem 0;
+    color: #2e7d32;
+}
+
+.info-panel p {
+    margin: 0.25rem 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.info-panel a {
+    color: #43a047;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.info-panel a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .rainforest-map-wrap {
+        flex-direction: column;
+        height: 90vh;
+    }
+
+    .info-panel {
+        width: 100%;
+        height: auto;
+        margin-top: 1rem;
+    }
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -389,8 +623,8 @@ p {
 }
 
 .links {
-  color: inherit !important;
-  text-decoration: none !important;
+    color: inherit !important;
+    text-decoration: none !important;
 }
 
 .card:hover {
