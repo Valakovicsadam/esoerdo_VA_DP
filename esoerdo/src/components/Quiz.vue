@@ -19,10 +19,10 @@ const resetAnswers = () => {
 const checkAnswer = (index) => {
     if (index == quizQuestions[actual.value].helyesIndex) {
         correct.value++;
-        alert("Good!");
+        alert("Correct answer!");
     }
     else {
-        alert("Bad!");
+        alert("Wrong answer!");
     }
     next();
 }
