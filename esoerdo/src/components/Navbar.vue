@@ -25,7 +25,7 @@
               <router-link to="/quiz" class="nav-link" href="#">Quiz</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Tips</a>
+              <router-link to="/tips" class="nav-link" href="#">Tips</router-link>
             </li>
           </ul>
         </div>

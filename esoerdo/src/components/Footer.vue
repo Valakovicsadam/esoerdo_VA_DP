@@ -19,9 +19,9 @@
       <div class="col-md-4">
         <h5>Gyors linkek</h5>
         <ul class="list-unstyled footer-links">
-          <li><a href="#">Plants&Animals</a></li>
-          <router-link to="/quiz" class="nav-link" href="#">Quiz</router-link>
-          <li><a href="#">Tips</a></li>
+          <li><router-link to="/plantAndAnimals" class="nav-link" href="#">Plants&Animals</router-link></li>
+          <li><router-link to="/quiz" class="nav-link" href="#">Quiz</router-link></li>
+          <li><router-link to="/tips" class="nav-link" href="#">Tips</router-link></li>
         </ul>
       </div>
       <div class="col-md-4">

@@ -1,9 +1,9 @@
 <script setup>
 
-import { ref } from 'vue';
-import { animals } from '../data/PlantsAndAnimals';
-const allatok = ref(animals)
-
+//import { ref } from 'vue';
+//import {animals, plants} from '../data/PlantsAndAnimals.js';
+//const animals = ref(animals)
+//const plants = ref(plants)
 
 </script>
 

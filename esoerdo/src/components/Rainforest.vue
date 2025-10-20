@@ -5,78 +5,80 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { RainforestData } from "../data/RainforestData.js";
 
+
 const mapContainer = ref(null);
 const map = ref(null);
 const selected = ref(null);
 const query = ref("");
 
+
 const rainforest = new RainforestData();
 
 function resetView() {
-  if (map.value) map.value.flyTo({ center: [0, 0], zoom: 2 });
+    if (map.value) map.value.flyTo({ center: [0, 0], zoom: 2 });
 }
 
 function search() {
-  const found = rainforest.findByName(query.value);
-  if (found) {
-    const bounds = new maplibregl.LngLatBounds();
-    found.coordinates.forEach(([lng, lat]) => bounds.extend([lng, lat]));
-    map.value.fitBounds(bounds, { padding: 50 });
-    selected.value = found;
-  } else {
-    alert("Region not found");
-  }
+    const found = rainforest.findByName(query.value);
+    if (found) {
+        const bounds = new maplibregl.LngLatBounds();
+        found.coordinates.forEach(([lng, lat]) => bounds.extend([lng, lat]));
+        map.value.fitBounds(bounds, { padding: 50 });
+        selected.value = found;
+    } else {
+        alert("Region not found");
+    }
 }
 
 onMounted(() => {
-  map.value = new maplibregl.Map({
-    container: mapContainer.value,
-    style: "https://demotiles.maplibre.org/style.json",
-    center: [0, 0],
-    zoom: 2,
-  });
-
-  map.value.on("load", () => {
-    map.value.addSource("rainforests", {
-      type: "geojson",
-      data: rainforest.getGeoJSON(),
+    map.value = new maplibregl.Map({
+        container: mapContainer.value,
+        style: "https://demotiles.maplibre.org/style.json",
+        center: [0, 0],
+        zoom: 2,
     });
 
-    map.value.addLayer({
-      id: "rainforest-fill",
-      type: "fill",
-      source: "rainforests",
-      paint: { "fill-color": ["get", "color"], "fill-opacity": 0.5 },
-    });
+    map.value.on("load", () => {
+        map.value.addSource("rainforests", {
+            type: "geojson",
+            data: rainforest.getGeoJSON(),
+        });
 
-    map.value.addLayer({
-      id: "rainforest-outline",
-      type: "line",
-      source: "rainforests",
-      paint: { "line-color": "#000", "line-width": 1 },
-    });
+        map.value.addLayer({
+            id: "rainforest-fill",
+            type: "fill",
+            source: "rainforests",
+            paint: { "fill-color": ["get", "color"], "fill-opacity": 0.5 },
+        });
 
-    map.value.on("click", "rainforest-fill", e => {
-      const props = e.features[0].properties;
-      props.countries = JSON.parse(props.countries || "[]");
-      selected.value = props;
-      map.value.flyTo({ center: e.lngLat, zoom: 4 });
-    });
+        map.value.addLayer({
+            id: "rainforest-outline",
+            type: "line",
+            source: "rainforests",
+            paint: { "line-color": "#000", "line-width": 1 },
+        });
 
-    map.value.on("mouseenter", "rainforest-fill", () => {
-      map.value.getCanvas().style.cursor = "pointer";
+        map.value.on("click", "rainforest-fill", e => {
+            const props = e.features[0].properties;
+            props.countries = JSON.parse(props.countries || "[]");
+            selected.value = props;
+            map.value.flyTo({ center: e.lngLat, zoom: 4 });
+        });
+
+        map.value.on("mouseenter", "rainforest-fill", () => {
+            map.value.getCanvas().style.cursor = "pointer";
+        });
+        map.value.on("mouseleave", "rainforest-fill", () => {
+            map.value.getCanvas().style.cursor = "";
+        });
     });
-    map.value.on("mouseleave", "rainforest-fill", () => {
-      map.value.getCanvas().style.cursor = "";
-    });
-  });
 });
 
 onBeforeUnmount(() => {
-  if (map.value) {
-    map.value.remove();
-    map.value = null;
-  }
+    if (map.value) {
+        map.value.remove();
+        map.value = null;
+    }
 });
 
 </script>
@@ -103,20 +105,25 @@ onBeforeUnmount(() => {
             <div class="row kartyak">
                 <div class="col-lg-3">
                     <div class="card">
-                        <img src="../assets/mainpage/cards/map.jpg" alt="Map" title="Rainforest map of the world" />
-                        <div class="card-content ">
-                            <strong>Interactive map</strong> <span class="tag">Education</span>
-                            <p class="mt-2">An Interactive way to learn about our Rainforests</p>
-                        </div>
+                        <a href="#mapSection">
+                            <img src="../assets/mainpage/cards/map.jpg" alt="Map" title="Rainforest map of the world" />
+                            <div class="card-content ">
+                                <strong>Interactive map</strong> <span class="tag">Education</span>
+                                <p class="mt-2">An Interactive way to learn about our Rainforests</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="card">
-                        <img src="../assets/mainpage/cards/jaguar.jpg" alt="Jaguar" title="Jaguar" />
-                        <div class="card-content">
-                            <strong>Plants and animals</strong> <span class="tag">Wildlife</span>
-                            <p class="mt-2">Learn about the wildlife in the rainforests </p>
-                        </div>
+                        <router-link to="/plantAndAnimals" class="links">
+                            <img src="../assets/mainpage/cards/jaguar.jpg" alt="PlantsAndAnimals"
+                                title="PlantsAndAnimals" />
+                            <div class="card-content">
+                                <strong>Plants and animals</strong> <span class="tag">Wildlife</span>
+                                <p class="mt-2">Learn about the wildlife in the rainforests </p>
+                            </div>
+                        </router-link>
                     </div>
                 </div>
                 <div class="col-lg-3">
@@ -132,11 +139,13 @@ onBeforeUnmount(() => {
                 </div>
                 <div class="col-lg-3">
                     <div class="card">
-                        <img src="../assets/mainpage/cards/sustain.jpg" alt="Sus" title="Sustainability" />
-                        <div class="card-content">
-                            <strong>Sustainability tips</strong> <span class="tag">Tips</span>
-                            <p class="mt-2">Let's unite for the rainforests to save them</p>
-                        </div>
+                        <router-link to="/tips" class="links">
+                            <img src="../assets/mainpage/cards/sustain.jpg" alt="Sus" title="Sustainability" />
+                            <div class="card-content">
+                                <strong>Sustainability tips</strong> <span class="tag">Tips</span>
+                                <p class="mt-2">Let's unite for the rainforests to save them</p>
+                            </div>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -217,7 +226,7 @@ onBeforeUnmount(() => {
             </div>
         </div>
 
-        <div class="map-section">
+        <div class="map-section" id="mapSection">
             <div class="rainforest-map-wrap">
                 <div class="controls">
                     <input v-model="query" placeholder="Search rainforest (e.g. Amazon)" @keyup.enter="search"
@@ -393,10 +402,50 @@ onBeforeUnmount(() => {
             </div>
         </div>
     </section>
+    
 </template>
 
 <style scoped>
 
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+    opacity: 0;
+}
+
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #43a047, #2e7d32);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.scroll-top-btn:hover {
+    background: linear-gradient(135deg, #4caf50, #388e3c);
+    transform: translateY(-3px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
 .map-section {
     background: linear-gradient(135deg, #e8f5e9, #c8e6c9);

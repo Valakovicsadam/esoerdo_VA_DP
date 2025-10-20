@@ -1,4 +1,3 @@
-// src/data/RainforestData.js
 export class RainforestData {
   constructor() {
     this.features = [
@@ -65,7 +64,7 @@ export class RainforestData {
     ];
   }
 
-  // Get GeoJSON formatted for MapLibre
+
   getGeoJSON() {
     return {
       type: "FeatureCollection",
@@ -87,7 +86,6 @@ export class RainforestData {
     };
   }
 
-  // Search by name
   findByName(query) {
     const q = query.trim().toLowerCase();
     return this.features.find(f => f.name.toLowerCase().includes(q));

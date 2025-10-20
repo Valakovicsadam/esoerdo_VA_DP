@@ -1,4 +1,3 @@
-// src/data/RainforestPlants.js
 export class RainforestPlants {
   constructor() {
     this.categories = [
