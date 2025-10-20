@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul class="navbar-nav d-flex align-items-center bebas-neue-regular">
             <li class="nav-item">
-              <a class="nav-link" href="#">Plants&Animals</a>
+              <router-link to="/plantAndAnimals" class="nav-link" href="#">Plants And Animals</router-link>
             </li>
             <li class="nav-item">
               <router-link to="/quiz" class="nav-link" href="#">Quiz</router-link>
