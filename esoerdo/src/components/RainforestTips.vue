@@ -57,14 +57,42 @@ const tips = ref(tipsData.getAll());
   text-align: center;
   color: white;
   position: relative;
+  overflow: hidden;
+  animation: heroBackgroundShift 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroBackgroundShift {
+  0% {
+    background-position: center top;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: center bottom;
+    filter: brightness(1.1);
+  }
+  100% {
+    background-position: center top;
+    filter: brightness(1);
+  }
 }
 
 .herotext {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.85);
   color: #000;
-  border-radius: 20px;
-  padding: 20px 30px;
+  border-radius: 30px;
+  padding: 30px 40px;
   max-width: 600px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  transform: translateY(-20px);
+  animation: fadeSlideIn 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .section {
@@ -72,60 +100,150 @@ const tips = ref(tipsData.getAll());
   margin: 40px auto;
   padding: 20px;
   text-align: center;
+  animation: fadeInUp 1.5s ease forwards;
+  opacity: 0;
 }
 
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .card {
-  background: white;
-  border-radius: 12px;
+  position: relative;
+  background: linear-gradient(145deg, #ffffff, #e6f0e9);
+  border-radius: 16px;
   overflow: hidden;
   max-width: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  transition: box-shadow 0.5s ease;
+  padding: 25px;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  cursor: pointer;
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+  animation: popIn 0.8s ease forwards;
+  opacity: 0;
+  will-change: transform;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px rgb(0 0 0 / 0.2);
+  box-shadow: 0 15px 30px rgba(34, 139, 34, 0.4);
+  transform: scale(1.05) translateY(-10px);
+  background: linear-gradient(145deg, #d4f1d4, #a1d99a);
 }
 
 .tip-icon {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 15px;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 8px rgba(102, 187, 106, 0.7));
+  transition: filter 0.3s ease;
+}
+
+.card:hover .tip-icon {
+  filter: drop-shadow(0 0 20px rgba(56, 142, 60, 0.9));
 }
 
 .card-content {
   text-align: center;
+  user-select: none;
 }
 
 .tag {
-  background-color: #dfe6eb;
-  border-radius: 10px;
-  padding: 3px 8px;
-  font-size: 12px;
-  font-weight: 600;
+  background-color: #a5d6a7;
+  border-radius: 14px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
   display: inline-block;
   margin-left: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .layer-section {
-  background: linear-gradient(135deg, #a5d6a7, #66bb6a);
+  background: linear-gradient(135deg, #66bb6a, #a5d6a7);
   color: #fff;
-  border-radius: 12px;
-  padding: 30px;
-  margin: 40px auto;
+  border-radius: 20px;
+  padding: 40px 50px;
+  margin: 60px auto;
   max-width: 1000px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  animation: slideUpFadeIn 2s ease forwards;
+  opacity: 0;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-size: 1.1rem;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(102,187,106,0.2) 10%, transparent 40%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.card:hover::after {
+  opacity: 1;
+  animation: ripplePulse 1.4s infinite;
+}
+
+@keyframes ripplePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
 }
 </style>

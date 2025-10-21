@@ -4,6 +4,19 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { RainforestData } from "../data/RainforestData.js";
+import { RainforestPlants } from '../data/RainforestPlants.js'
+
+const plantData = new RainforestPlants()
+const categories = ref([])
+const activeCategory = ref(null)
+
+onMounted(() => {
+  categories.value = plantData.getCategories()
+})
+
+function toggleCategory(index) {
+  activeCategory.value = activeCategory.value === index ? null : index
+}
 
 
 const mapContainer = ref(null);
@@ -252,136 +265,29 @@ onBeforeUnmount(() => {
             </div>
         </div>
 
-        <div class="tabs">
-            <p class=" tab trees">
-                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1"
-                    aria-expanded="false" aria-controls="collapseExample">
-                    Trees
-                </button>
-            </p>
-            <p class="tab flowers">
-                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2"
-                    aria-expanded="false" aria-controls="collapseExample">
-                    Flowers
-                </button>
-            </p>
-            <p class=" gap-1 tab plants">
-                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3"
-                    aria-expanded="false" aria-controls="collapseExample">
-                    Plants
-                </button>
-            </p>
-        </div>
-
-        <div class="cards-container">
-            <div class="card">
-                <div class="collapse" id="collapseExample1">
-                    <div class="card-body">
-                        <h6>Kapok Tree</h6>
-                        <p>The Kapok tree (Ceiba pentandra) is known for its towering height and large buttress roots
-                            that help stabilize it in the shallow rainforest soil. It is mainly found in the tropical
-                            rainforests of Central and South America. This tree provides habitat and food for many
-                            animals.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="collapse" id="collapseExample1">
-                    <div class=" card-body">
-                        <h6>Mahogany</h6>
-                        <p>Mahogany (Swietenia macrophylla) is prized for its durable and beautiful wood. It grows in
-                            the rainforests of Central and South America. Due to heavy logging, conservation efforts are
-                            important to protect this majestic species.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="collapse" id="collapseExample1">
-                    <div class=" card-body">
-                        <h6>Dipterocarp Trees</h6>
-                        <p>Dipterocarp trees dominate the rainforests of Southeast Asia. These towering giants are known
-                            for their massive size and hardwood timber. They play a crucial role in the forest canopy by
-                            providing shelter and food for many creatures, and they influence the forest’s microclimate.
-                        </p>
+        <div class="accordion" id="rainforestAccordion">
+            <div v-for="(category, catIndex) in categories" :key="catIndex" class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" :class="{ collapsed: activeCategory !== catIndex }" type="button"
+                        @click="toggleCategory(catIndex)">
+                        {{ category.name }}
+                    </button>
+                </h2>
+                <div class="accordion-collapse collapse" :class="{ show: activeCategory === catIndex }">
+                    <div class="accordion-body">
+                        <div v-for="(item, index) in category.items" :key="index" class="card mb-3">
+                            <div class="card-header">
+                                <strong>{{ item.name }}</strong>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ item.description }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="cards-container">
-            <div class="card">
-                <div class="collapse" id="collapseExample2">
-                    <div class=" card-body">
-                        <h6>Rafflesia</h6>
-                        <p>The Rafflesia flower is famous for producing the largest single bloom in the world. Found in
-                            the rainforests of Southeast Asia, especially in Malaysia and Indonesia, this flower is also
-                            known as the “corpse flower” because of its strong, unpleasant odor that attracts flies for
-                            pollination.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="collapse" id="collapseExample2">
-                    <div class=" card-body">
-                        <h6>Heliconia</h6>
-                        <p>Heliconia, often called “lobster claw” or “wild plantain,” is known for its bright, colorful
-                            bracts that look like flowers. These plants grow in tropical rainforests across Central and
-                            South America and provide food and shelter for hummingbirds and other pollinators.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="collapse" id="collapseExample2">
-                    <div class=" card-body">
-                        <h6>Passion Flower</h6>
-                        <p>The Passion Flower grows in rainforests in Central and South America. It is admired for its
-                            intricate and beautiful flowers, which have a unique structure that helps attract
-                            pollinators like bees and butterflies. The fruit of some species is also edible.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="cards-container">
-            <div class="card">
-                <div class="collapse" id="collapseExample3">
-                    <div class=" card-body">
-                        <h6>Epiphytes</h6>
-                        <p>Epiphytes are plants that grow on other plants, especially trees, without harming them.
-                            Common in rainforests worldwide, they absorb moisture and nutrients from the air and rain.
-                            Orchids and bromeliads are well-known examples of epiphytes.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="collapse" id="collapseExample3">
-                    <div class=" card-body">
-                        <h6>Ferns</h6>
-                        <p>Ferns thrive in the humid, shaded environment of rainforests. They have been around for
-                            millions of years and contribute to the forest’s undergrowth, helping to retain moisture and
-                            provide habitat for small animals and insects.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="collapse" id="collapseExample3">
-                    <div class=" card-body">
-                        <h6>Bamboo</h6>
-                        <p>Bamboo is a fast-growing plant found in many tropical rainforests, especially in Asia and
-                            South America. It is important for the ecosystem as food and shelter for animals like pandas
-                            and various insects, and it is also used by humans for construction and crafts</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="layers-container2 mt-3">
+        <div class="layers-container mt-3">
             <h4>Quick Facts</h4>
             <div class="row d-flex">
                 <div class="col-lg-4 facts">
@@ -402,17 +308,13 @@ onBeforeUnmount(() => {
             </div>
         </div>
     </section>
-    
+
 </template>
 
 <style scoped>
 
-.fade-enter-active, .fade-leave-active {
-    transition: opacity 0.5s ease;
-}
-
-.fade-enter-from, .fade-leave-to {
-    opacity: 0;
+.map-section{
+    margin-bottom: 20px;
 }
 
 .scroll-top-btn {
@@ -587,24 +489,36 @@ p {
     margin: 0 auto;
 }
 
-.pics {
-    border-radius: 12px;
-    max-width: 48%;
-    margin: 0 1%;
-}
-
 .hero {
-    background-image: url('../assets/mainpage/pexels-davidriano-975771.jpg');
+    background-image: url("../assets/mainpage/pexels-davidriano-975771.jpg");
     background-size: cover;
     background-position: center;
     height: 400px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
     text-align: center;
-    padding: 0 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    animation: heroBackgroundShift 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroBackgroundShift {
+    0% {
+        background-position: center top;
+        filter: brightness(1);
+    }
+
+    50% {
+        background-position: center bottom;
+        filter: brightness(1.1);
+    }
+
+    100% {
+        background-position: center top;
+        filter: brightness(1);
+    }
 }
 
 .herotext {
@@ -613,7 +527,6 @@ p {
     border-radius: 20px;
     padding: 10px;
 }
-
 
 .d-flex {
     flex-wrap: wrap;
@@ -629,7 +542,6 @@ p {
     flex: 1 1 300px;
     max-width: 100%;
 }
-
 
 .fact-icon {
     width: 60px;
@@ -671,17 +583,8 @@ p {
     margin: 10px;
 }
 
-.links {
-    color: inherit !important;
-    text-decoration: none !important;
-}
-
 .card:hover {
     box-shadow: 0 8px 16px rgb(0 0 0 / 0.5);
-}
-
-.kartyak {
-    padding-bottom: 20px;
 }
 
 .card img {
@@ -694,13 +597,6 @@ p {
 .card-content {
     padding: 10px;
     flex-grow: 1;
-}
-
-.carousel-inner img {
-    height: 700px;
-    width: 1000px;
-    object-fit: cover;
-    border-radius: 20px;
 }
 
 .tag {
@@ -723,20 +619,6 @@ p {
     gap: 20px;
 }
 
-.layers-container2 {
-    background: #69b5789d;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
-    padding: 20px;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.d-flex {
-    flex-wrap: nowrap;
-}
-
 .layers-container,
 h4 {
     text-align: center;
@@ -753,49 +635,63 @@ h4 {
     font-weight: 600;
 }
 
-.tabs {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 20px 0;
-}
-
-.tab {
-    background: #ffffff;
-    padding: 8px 16px;
+.carousel-inner img {
+    height: 700px;
+    width: 100%;    
+    object-fit: cover;
     border-radius: 20px;
-    cursor: pointer;
-    user-select: none;
-    transition: box-shadow 0.5s ease;
 }
 
-.tab:hover {
-    box-shadow: 0 4px 8px rgb(0 0 0 / 0.5);
+
+.accordion-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
 }
 
-.tab.active {
-    background: #d1e7e3;
-    font-weight: 700;
+.card.mb-3 {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.trees {
-    background-color: #a5784c;
-
+.card.mb-3:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-.flowers {
-    background-color: #ee5d92;
-
+.card-header {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  padding: 1rem;
+  font-weight: bold;
+  color: #2e7d32;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
-.plants {
-    background-color: #5FAD56;
+.card-body {
+  padding: 1rem;
+  font-size: 14px;
+  color: #444;
+  flex-grow: 1;
 }
 
-.trees,
-.flowers,
-.plants {
-    color: #fff;
-    font-weight: bold;
+.card-text {
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .accordion-body {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
