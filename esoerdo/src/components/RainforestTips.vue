@@ -7,15 +7,17 @@ const tips = ref(tipsData.getAll());
 </script>
 
 <template>
-  <section class="hero">
-    <div class="herotext">
-      <h3>Save the Rainforests</h3>
-      <p>
-        Small actions lead to big change — learn how you can help protect the
-        world’s most vital ecosystems.
-      </p>
-    </div>
-  </section>
+  <section class="hero position-relative d-flex align-items-center justify-content-center text-center text-white">
+        <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
+
+        <div class="herotext position-relative">
+            <h3 class="display-4 fw-bold animate-fade-in">The Majestic Rainforest</h3>
+            <p class="lead mt-3 animate-fade-in delay-1">
+                Discover the world's most biodiverse ecosystems, home to millions of species and vital to our planet's
+                health.
+            </p>
+        </div>
+    </section>
 
   <section class="section tips-section">
     <h2>Simple Ways to Make a Difference</h2>
@@ -47,45 +49,40 @@ const tips = ref(tipsData.getAll());
 
 <style scoped>
 .hero {
-  background-image: url("../assets/mainpage/pexels-davidriano-975771.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-  position: relative;
-  overflow: hidden;
-  animation: heroBackgroundShift 20s ease-in-out infinite alternate;
+    background-image: url('../assets/mainpage/pexels-davidriano-975771.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
 }
 
-@keyframes heroBackgroundShift {
-  0% {
-    background-position: center top;
-    filter: brightness(1);
-  }
-  50% {
-    background-position: center bottom;
-    filter: brightness(1.1);
-  }
-  100% {
-    background-position: center top;
-    filter: brightness(1);
-  }
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .herotext {
-  background-color: rgba(255, 255, 255, 0.85);
-  color: #000;
-  border-radius: 30px;
-  padding: 30px 40px;
-  max-width: 600px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-  transform: translateY(-20px);
-  animation: fadeSlideIn 1.2s ease forwards;
-  opacity: 0;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
 }
 
 @keyframes fadeSlideIn {

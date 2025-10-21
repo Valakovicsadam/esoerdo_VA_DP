@@ -97,13 +97,12 @@ const showPlants = () => {
 
 .container {
   max-width: 100%;
-  margin: 60px auto;
-  padding: 4rem 3rem;
+  padding: 200px 3rem;
   background: linear-gradient(to bottom right, #1b3a2e, #2f4f3f);
-  border-radius: 32px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
   font-family: 'Segoe UI', sans-serif;
   color: #e6fffa;
+  
 }
 
 .title {

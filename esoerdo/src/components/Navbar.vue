@@ -10,9 +10,8 @@
           <img class="logo" src="../assets/mainpage/leaf.png" alt="logo" title="logo" />
           <span class="brand-text bebas-neue-regular" aria-current="page">Rainforest</span>
         </router-link>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-          aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -44,8 +43,36 @@
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&display=swap');
 
+.navbar-brand {
+  cursor: pointer;
+  gap: 0.8rem;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+}
+
 .brand-text {
+  font-family: 'Poppins', 'Bebas Neue', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #c4c5c4;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover .brand-text {
+  color: #2e7d32;
 }
 
 .modern-navbar {
@@ -70,23 +97,25 @@
 }
 
 .modern-navbar .nav-link {
-  color: #537c57;
   font-weight: 600;
   margin: 0 0.8rem;
   position: relative;
   transition: color 0.3s ease;
   font-size: 25px;
+
+  color: #c4c5c4;
+  mix-blend-mode: difference;
 }
 
 .modern-navbar .nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: #0b3b1f;
-    transition: width 0.3s ease;
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #0b3b1f;
+  transition: width 0.3s ease;
 }
 
 .modern-navbar .nav-link:hover,
@@ -133,5 +162,4 @@ main {
     font-size: 45px;
   }
 }
-
 </style>

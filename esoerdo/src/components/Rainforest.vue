@@ -11,11 +11,11 @@ const categories = ref([])
 const activeCategory = ref(null)
 
 onMounted(() => {
-  categories.value = plantData.getCategories()
+    categories.value = plantData.getCategories()
 })
 
 function toggleCategory(index) {
-  activeCategory.value = activeCategory.value === index ? null : index
+    activeCategory.value = activeCategory.value === index ? null : index
 }
 
 
@@ -98,11 +98,15 @@ onBeforeUnmount(() => {
 
 <template>
 
-    <section class="hero">
-        <div class="herotext">
-            <h3>The Majestic Rainforest</h3>
-            <p>Discover the world's most biodiverse ecosystems, home to millions of species and vital to our planet's
-                health</p>
+    <section class="hero position-relative d-flex align-items-center justify-content-center text-center text-white">
+        <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
+
+        <div class="herotext position-relative">
+            <h3 class="display-4 fw-bold animate-fade-in">The Majestic Rainforest</h3>
+            <p class="lead mt-3 animate-fade-in delay-1">
+                Discover the world's most biodiverse ecosystems, home to millions of species and vital to our planet's
+                health.
+            </p>
         </div>
     </section>
     <section class="section" id="animals">
@@ -114,48 +118,54 @@ onBeforeUnmount(() => {
                 specific environment
             </p>
         </div>
-        <div class="cards-container d-flex">
-            <div class="row kartyak">
-                <div class="col-lg-3">
-                    <div class="card">
+        <div class="container my-5">
+            <div class="row justify-content-center gy-4">
+                <div class="col-10 col-sm-8 col-md-6 col-lg-3 d-flex justify-content-center">
+                    <div class="card w-100 text-center">
                         <a href="#mapSection">
-                            <img src="../assets/mainpage/cards/map.jpg" alt="Map" title="Rainforest map of the world" />
-                            <div class="card-content ">
-                                <strong>Interactive map</strong> <span class="tag">Education</span>
+                            <img src="../assets/mainpage/cards/map.jpg" class="card-img-top img-fluid" alt="Map"
+                                title="Rainforest map of the world" />
+                            <div class="card-body">
+                                <strong>Interactive map</strong> <span class="tag d-block mb-2">Education</span>
                                 <p class="mt-2">An Interactive way to learn about our Rainforests</p>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="card">
+
+                <div class="col-10 col-sm-8 col-md-6 col-lg-3 d-flex justify-content-center">
+                    <div class="card w-100 text-center">
                         <router-link to="/plantAndAnimals" class="links">
-                            <img src="../assets/mainpage/cards/jaguar.jpg" alt="PlantsAndAnimals"
-                                title="PlantsAndAnimals" />
-                            <div class="card-content">
-                                <strong>Plants and animals</strong> <span class="tag">Wildlife</span>
-                                <p class="mt-2">Learn about the wildlife in the rainforests </p>
+                            <img src="../assets/mainpage/cards/jaguar.jpg" class="card-img-top img-fluid"
+                                alt="PlantsAndAnimals" title="PlantsAndAnimals" />
+                            <div class="card-body">
+                                <strong>Plants and animals</strong> <span class="tag d-block mb-2">Wildlife</span>
+                                <p class="mt-2">Learn about the wildlife in the rainforests</p>
                             </div>
                         </router-link>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="card">
+
+                <div class="col-10 col-sm-8 col-md-6 col-lg-3 d-flex justify-content-center">
+                    <div class="card w-100 text-center">
                         <router-link to="/quiz" class="links">
-                            <img src="../assets/mainpage/cards/quiz.jpg" alt="Quiz" title="Quiz" />
-                            <div class="card-content">
-                                <strong>Quiz</strong> <span class="tag">Brainstorm</span>
-                                <p class="mt-2">A playfull quiz for every age group</p>
+                            <img src="../assets/mainpage/cards/quiz.jpg" class="card-img-top img-fluid" alt="Quiz"
+                                title="Quiz" />
+                            <div class="card-body">
+                                <strong>Quiz</strong> <span class="tag d-block mb-2">Brainstorm</span>
+                                <p class="mt-2">A playful quiz for every age group</p>
                             </div>
                         </router-link>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="card">
+
+                <div class="col-10 col-sm-8 col-md-6 col-lg-3 d-flex justify-content-center">
+                    <div class="card w-100 text-center">
                         <router-link to="/tips" class="links">
-                            <img src="../assets/mainpage/cards/sustain.jpg" alt="Sus" title="Sustainability" />
-                            <div class="card-content">
-                                <strong>Sustainability tips</strong> <span class="tag">Tips</span>
+                            <img src="../assets/mainpage/cards/sustain.jpg" class="card-img-top img-fluid"
+                                alt="Sustainability" title="Sustainability" />
+                            <div class="card-body">
+                                <strong>Sustainability tips</strong> <span class="tag d-block mb-2">Tips</span>
                                 <p class="mt-2">Let's unite for the rainforests to save them</p>
                             </div>
                         </router-link>
@@ -163,6 +173,7 @@ onBeforeUnmount(() => {
                 </div>
             </div>
         </div>
+
         <div class="layers-container">
             <h4>Did you know?</h4>
             <div class="row d-flex">
@@ -273,20 +284,27 @@ onBeforeUnmount(() => {
                         {{ category.name }}
                     </button>
                 </h2>
+
                 <div class="accordion-collapse collapse" :class="{ show: activeCategory === catIndex }">
                     <div class="accordion-body">
-                        <div v-for="(item, index) in category.items" :key="index" class="card mb-3">
-                            <div class="card-header">
-                                <strong>{{ item.name }}</strong>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">{{ item.description }}</p>
+                        <div class="row justify-content-center gy-4">
+                            <div v-for="(item, index) in category.items" :key="index"
+                                class="col-10 col-sm-8 col-md-6 col-lg-4 d-flex justify-content-center">
+                                <div class="card w-100 text-center">
+                                    <div class="card-header">
+                                        <strong>{{ item.name }}</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">{{ item.description }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="layers-container mt-3">
             <h4>Quick Facts</h4>
             <div class="row d-flex">
@@ -312,8 +330,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-
-.map-section{
+.map-section {
     margin-bottom: 20px;
 }
 
@@ -490,42 +507,44 @@ p {
 }
 
 .hero {
-    background-image: url("../assets/mainpage/pexels-davidriano-975771.jpg");
+    background-image: url('../assets/mainpage/pexels-davidriano-975771.jpg');
     background-size: cover;
     background-position: center;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
+    height: 100vh;
     position: relative;
     overflow: hidden;
-    animation: heroBackgroundShift 20s ease-in-out infinite alternate;
 }
 
-@keyframes heroBackgroundShift {
-    0% {
-        background-position: center top;
-        filter: brightness(1);
-    }
-
-    50% {
-        background-position: center bottom;
-        filter: brightness(1.1);
-    }
-
-    100% {
-        background-position: center top;
-        filter: brightness(1);
-    }
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .herotext {
-    background-color: rgba(255, 255, 255, 0.7);
-    color: #000;
-    border-radius: 20px;
-    padding: 10px;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.6s;
 }
 
 .d-flex {
@@ -637,61 +656,61 @@ h4 {
 
 .carousel-inner img {
     height: 700px;
-    width: 100%;    
+    width: 100%;
     object-fit: cover;
     border-radius: 20px;
 }
 
 
 .accordion-body {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
-  background-color: #f5f5f5;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
 }
 
 .card.mb-3 {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card.mb-3:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .card-header {
-  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-  padding: 1rem;
-  font-weight: bold;
-  color: #2e7d32;
-  border-bottom: 1px solid #ddd;
-  font-size: 16px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    padding: 1rem;
+    font-weight: bold;
+    color: #2e7d32;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
 .card-body {
-  padding: 1rem;
-  font-size: 14px;
-  color: #444;
-  flex-grow: 1;
+    padding: 1rem;
+    font-size: 14px;
+    color: #444;
+    flex-grow: 1;
 }
 
 .card-text {
-  margin: 0;
-  line-height: 1.6;
+    margin: 0;
+    line-height: 1.6;
 }
 
 @media (max-width: 600px) {
-  .accordion-body {
-    grid-template-columns: 1fr;
-  }
+    .accordion-body {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
